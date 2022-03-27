@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/hodo-cloud-client",
+            "outputPath": "C:/Users/Андрей/source/repos/HodoCloud/HodoCloudAPI/wwwroot",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
