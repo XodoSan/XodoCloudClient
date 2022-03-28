@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -11,16 +11,24 @@ export class FileLoadPageComponent
 {
   constructor(private http: HttpClient){}
 
-  public userFile: File = new File([], "kroll");
-  
+  public userDatas: FormData[] = [];
+
   public ChangeFiles(event: any)
   {
-    this.userFile = event.target.files[0];
+    for(var i = 0; i < event.target.files.length; i++)
+    {
+      let userData = new FormData();
+      userData.append('file_upload', event.target.files[i], event.target.files[i].name);
+      this.userDatas.push(userData);
+    }
   }
 
-  public async AddFiles(): Promise<void>
+  public async AddFiles(userDatas: FormData[]): Promise<void>
   {
-    console.log(this.userFile);
-    firstValueFrom(await this.http.post<void>('/api/File', this.userFile));
+    console.log(this.userDatas);
+    for(var i = 0; i < userDatas.length; i++)
+    {
+      firstValueFrom(await this.http.post<void>('/api/File', this.userDatas[i]));
+    }
   }
 }
