@@ -1,21 +1,36 @@
-<form
-    [formGroup]="form"
-    (ngSubmit)="onSubmit()"
->
-    <input formControlName="email" 
-    type="email" 
-    placeholder="Enter your email" 
-    >
-    <input formControlName="password"
-    type="password" 
-    placeholder="Enter your password" 
-    >
-    <input formControlName="repeatedPassword"
-    type="password"
-    placeholder="Repeat your password"
-    >
-    <button 
-    type="submit"
-    [disabled]="form.invalid || form.disabled">Зарегистрироваться
-    </button>
-</form>
+<div>
+    <button mat-button mat-dialog-close></button>
+    <mat-dialog-content>
+        <h2 class="title">Registration</h2>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <form
+            [formGroup]="form"
+            (ngSubmit)="onSubmit()"
+        >
+            <label for="email">Email:</label>
+            <input formControlName="email" 
+            type="email" 
+            placeholder="Enter your email" 
+            >
+            <label for="password">Password:</label>
+            <input formControlName="password"
+            type="password" 
+            placeholder="Enter your password" 
+            >
+            <label for="password"> Repeat your password:</label>
+            <input formControlName="repeatedPassword"
+            type="password"
+            placeholder="Repeat your password"
+            >
+            <button 
+            type="submit"
+            cdkFocusInitial  
+            mat-button
+            [disabled]="form.invalid || form.disabled">Register
+            </button>
+            <button mat-button [mat-dialog-close]="true" class="function-button">Cancel</button>
+            <button mat-button mat-dialog-close (click)="openDialogLogin()">I have account</button>
+        </form>
+    </mat-dialog-actions>
+</div>

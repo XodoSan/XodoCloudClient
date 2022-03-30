@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/Entities/User';
 import { AuthService } from 'src/app/Services/AuthService';
+import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-registration-dialog',
@@ -12,7 +14,7 @@ export class RegistrationDialogComponent implements OnInit
 {
   public form = new FormGroup({});
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private dialog: MatDialog) {}
 
   ngOnInit()
   {
@@ -29,8 +31,12 @@ export class RegistrationDialogComponent implements OnInit
     {
       this.form.disable();
       this.auth.register(this.form.value);
-      console.log(this.form.value.password);
     }
     else alert('Passwords do not match');
+  }
+  
+  public openDialogLogin()
+  {
+    this.dialog.open(LoginDialogComponent);
   }
 }

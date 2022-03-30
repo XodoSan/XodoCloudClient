@@ -20,9 +20,10 @@
             >
             <button 
             type="submit"
-            [disabled]="form.invalid || form.disabled">Зарегистрироваться
+            cdkFocusInitial 
+            mat-button
+            [disabled]="form.invalid || form.disabled">Login
             </button>
-            <button type="submit" cdkFocusInitial mat-dialog-close mat-button>Sign in</button>
             <button mat-button [mat-dialog-close]="true" class="function-button">Cancel</button>
             <button mat-button mat-dialog-close (click)="openDialogRegistration()">I dont have account</button>
         </form>

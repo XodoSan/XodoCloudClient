@@ -10,7 +10,7 @@ import { firstValueFrom } from 'rxjs';
 export class FileLoadPageComponent
 {
   private maxFileSize: number = 524288000;
-  
+
   constructor(private http: HttpClient){}
 
   public userDatas: FormData[] = [];
@@ -39,7 +39,7 @@ export class FileLoadPageComponent
 
   private ValidationFile(file: any): boolean
   {
-    if (file.size > 524288000)
+    if (file.size > this.maxFileSize)
     {
       alert("file size must be no more than 5 megabytes");
     }
