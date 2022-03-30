@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FileLoadPageComponent } from './Components/Pages/file-load-page/file-load-page.component';
 import { MatInputModule } from '@angular/material/input';
 import { RegistrationDialogComponent } from './Components/Dialogs/registration-dialog/registration-dialog.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,9 +20,10 @@ import { RegistrationDialogComponent } from './Components/Dialogs/registration-d
     NoopAnimationsModule,
     MatInputModule,
     HttpClientModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

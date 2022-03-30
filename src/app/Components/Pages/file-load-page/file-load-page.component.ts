@@ -9,6 +9,8 @@ import { firstValueFrom } from 'rxjs';
 })
 export class FileLoadPageComponent
 {
+  private maxFileSize: number = 524288000;
+  
   constructor(private http: HttpClient){}
 
   public userDatas: FormData[] = [];
