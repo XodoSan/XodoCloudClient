@@ -4,13 +4,15 @@ import { AppComponent } from './app.component';
 import { MatButtonModule } from '@angular/material/button';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { FileLoadPageComponent } from './file-load-page/file-load-page.component';
+import { FileLoadPageComponent } from './Components/Pages/file-load-page/file-load-page.component';
 import { MatInputModule } from '@angular/material/input';
+import { RegistrationDialogComponent } from './Components/Dialogs/registration-dialog/registration-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FileLoadPageComponent,
+    RegistrationDialogComponent,
   ],
   imports: [
     BrowserModule,

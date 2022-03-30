@@ -44,7 +44,7 @@ export class FileLoadPageComponent
     else if (this.userDatas.length > 10)
     {
       alert("You can upload no more than 10 files at a time");
-    } 
+    }
     else
     {
       return true;
