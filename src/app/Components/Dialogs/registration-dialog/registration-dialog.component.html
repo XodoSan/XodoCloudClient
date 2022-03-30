@@ -6,12 +6,15 @@
     type="email" 
     placeholder="Enter your email" 
     >
-    <label for="email">Email:</label>
     <input formControlName="password"
     type="password" 
     placeholder="Enter your password" 
     >
-    <button mat-button 
+    <input formControlName="repeatedPassword"
+    type="password"
+    placeholder="Repeat your password"
+    >
+    <button 
     type="submit"
     [disabled]="form.invalid || form.disabled">Зарегистрироваться
     </button>

@@ -15,5 +15,18 @@ export class AuthService
         let request = this.http.post<User>('/api/User/Registration', user);
         firstValueFrom(request);
         return request;
-    }   
+    }
+
+    public login(user: User): Observable<User>
+    {
+        let request = this.http.post<User>('/api/User/Login', user);
+        firstValueFrom(request);
+        return request;
+    }
+    
+    public IsSamePasswords(password: string, repeatedPassword: string): boolean
+    {
+        if (password == repeatedPassword) return true;
+        else return false;
+    }
 }

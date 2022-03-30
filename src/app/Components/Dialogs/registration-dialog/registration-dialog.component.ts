@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { User } from 'src/app/Entities/User';
 import { AuthService } from 'src/app/Services/AuthService';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/Services/AuthService';
 })
 export class RegistrationDialogComponent implements OnInit
 {
-  form = new FormGroup({})
+  public form = new FormGroup({});
 
   constructor(private auth: AuthService) {}
 
@@ -17,14 +18,19 @@ export class RegistrationDialogComponent implements OnInit
   {
     this.form = new FormGroup({
       email: new FormControl(''),
-      password: new FormControl('')
-    })
+      password: new FormControl(''),
+      repeatedPassword: new FormControl('')
+    });
   }
 
-  onSubmit()
+  public onSubmit()
   {
-    this.form.disable()
-    console.log(this.form.value);
-    this.auth.register(this.form.value);
+    if (this.auth.IsSamePasswords(this.form.value.password, this.form.value.repeatedPassword))
+    {
+      this.form.disable();
+      this.auth.register(this.form.value);
+      console.log(this.form.value.password);
+    }
+    else alert('Passwords do not match');
   }
 }

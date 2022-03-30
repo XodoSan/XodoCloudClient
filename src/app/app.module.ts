@@ -8,12 +8,19 @@ import { FileLoadPageComponent } from './Components/Pages/file-load-page/file-lo
 import { MatInputModule } from '@angular/material/input';
 import { RegistrationDialogComponent } from './Components/Dialogs/registration-dialog/registration-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { DialogOptionsComponent } from './Components/Dialogs/dialog-options/dialog-options.component';
+import { LoginDialogComponent } from './Components/Dialogs/login-dialog/login-dialog.component';
+import { MainPageComponent } from './Components/Pages/main-page/main-page.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     FileLoadPageComponent,
     RegistrationDialogComponent,
+    DialogOptionsComponent,
+    LoginDialogComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +29,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     HttpClientModule,
     MatButtonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   bootstrap: [AppComponent]
 })
