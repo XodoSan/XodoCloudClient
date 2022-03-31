@@ -12,12 +12,12 @@ export class DialogOptionsComponent
 {
   constructor(private dialog: MatDialog) {}
 
-  public openDialogRegistration()
+  public async openDialogRegistration()
   {
     this.dialog.open(RegistrationDialogComponent);
   }
 
-  public openDialogLogin()
+  public async openDialogLogin()
   {
     this.dialog.open(LoginDialogComponent);
   }

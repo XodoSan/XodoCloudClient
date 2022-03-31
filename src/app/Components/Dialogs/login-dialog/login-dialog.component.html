@@ -5,24 +5,23 @@
     </mat-dialog-content>
     <mat-dialog-actions>
         <form
-            [formGroup]="form"
+            [formGroup]="loginDialogForm"
             (ngSubmit)="onSubmit()"
         >
-            <label for="email">Email:</label>
+            <label>Email:</label>
             <input formControlName="email" 
             type="email" 
             placeholder="Enter your email" 
             >
-            <label for="password">Password:</label>
+            <label>Password:</label>
             <input formControlName="password"
             type="password" 
             placeholder="Enter your password" 
             >
             <button 
             type="submit"
-            cdkFocusInitial 
             mat-button
-            [disabled]="form.invalid || form.disabled">Login
+            [disabled]="loginDialogForm.invalid || loginDialogForm.disabled">Login
             </button>
             <button mat-button [mat-dialog-close]="true" class="function-button">Cancel</button>
             <button mat-button mat-dialog-close (click)="openDialogRegistration()">I dont have account</button>

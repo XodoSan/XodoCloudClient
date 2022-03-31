@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { User } from 'src/app/Entities/User';
 import { AuthService } from 'src/app/Services/AuthService';
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 
@@ -12,31 +11,31 @@ import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 })
 export class RegistrationDialogComponent implements OnInit
 {
-  public form = new FormGroup({});
+  public regDialogForm = new FormGroup({});
 
-  constructor(private auth: AuthService, private dialog: MatDialog) {}
+  constructor(private auth: AuthService, private regDialog: MatDialog) {}
 
   ngOnInit()
   {
-    this.form = new FormGroup({
+    this.regDialogForm = new FormGroup({
       email: new FormControl(''),
       password: new FormControl(''),
       repeatedPassword: new FormControl('')
     });
   }
 
-  public onSubmit()
+  public async onSubmit()
   {
-    if (this.auth.IsSamePasswords(this.form.value.password, this.form.value.repeatedPassword))
+    if (this.auth.isSamePasswords(this.regDialogForm.value.password, this.regDialogForm.value.repeatedPassword))
     {
-      this.form.disable();
-      this.auth.register(this.form.value);
+      this.regDialogForm.disable();
+      this.auth.register(this.regDialogForm.value);
     }
     else alert('Passwords do not match');
   }
   
-  public openDialogLogin()
+  public async openDialogLogin()
   {
-    this.dialog.open(LoginDialogComponent);
+    this.regDialog.open(LoginDialogComponent);
   }
 }

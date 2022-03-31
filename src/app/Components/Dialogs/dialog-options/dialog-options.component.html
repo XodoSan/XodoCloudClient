@@ -1,12 +1,11 @@
 <div>
-    <button mat-button mat-dialog-close></button>
     <mat-dialog-content>
-        <h2 mat-dialog-title>Login to your account</h2>
+        <h2>Login to your account</h2>
         <div>Only registered users can upload files</div>
     </mat-dialog-content>
     <mat-dialog-actions>
         <div class="main-container__functions">
-            <button cdkFocusInitial mat-dialog-close (click)="openDialogLogin()" mat-button>Login</button>
+            <button mat-button mat-dialog-close (click)="openDialogLogin()">Login</button>
             <button mat-button [mat-dialog-close]="true" (click)="openDialogRegistration()">Registration</button>
         </div>
     </mat-dialog-actions>

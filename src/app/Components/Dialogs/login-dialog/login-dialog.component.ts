@@ -11,26 +11,28 @@ import { RegistrationDialogComponent } from '../registration-dialog/registration
 })
 export class LoginDialogComponent implements OnInit 
 {
-  public form = new FormGroup({});
+  public loginDialogForm = new FormGroup({});
 
-  constructor(private auth: AuthService, private dialog: MatDialog) {}
+  constructor(private auth: AuthService, private loginDialog: MatDialog) {}
 
   ngOnInit()
   {
-    this.form = new FormGroup({
+    this.loginDialogForm = new FormGroup({
       email: new FormControl(''),
       password: new FormControl(''),
     });
   }
 
-  public onSubmit()
+  public async onSubmit()
   {
-    this.form.disable();
-    this.auth.login(this.form.value);
+    if (await this.auth.login(this.loginDialogForm.value))
+    {
+      this.loginDialogForm.disable();
+    }
   }
 
-  public openDialogRegistration()
+  public async openDialogRegistration()
   {
-    this.dialog.open(RegistrationDialogComponent);
+    this.loginDialog.open(RegistrationDialogComponent);
   }
 }

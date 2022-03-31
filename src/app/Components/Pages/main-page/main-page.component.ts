@@ -9,10 +9,10 @@ import { DialogOptionsComponent } from '../../Dialogs/dialog-options/dialog-opti
 })
 export class MainPageComponent
 {
-  constructor(private dialog: MatDialog) {}
+  constructor(private mainDialog: MatDialog) {}
 
-  public openDialogOptions()
+  public async openDialogOptions()
   {
-    this.dialog.open(DialogOptionsComponent);
+    this.mainDialog.open(DialogOptionsComponent);
   }
 }
