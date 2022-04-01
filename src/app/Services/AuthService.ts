@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { firstValueFrom, Observable } from "rxjs";
+import { firstValueFrom } from "rxjs";
 import { User } from "../Entities/User";
 import { UserAuthenticateResult } from "../Entities/UserAuthenticateResult";
 
@@ -11,12 +11,17 @@ export class AuthService
 {
     constructor(private http: HttpClient) {}
 
-    public async register(user: User): Promise<Observable<User>>
+    public async register(user: User): Promise<boolean>
     {
-        let request = this.http.post<User>('/api/User/registration', user);
-        firstValueFrom(request);
+        let registrationResult: Promise<UserAuthenticateResult> = firstValueFrom(
+            await this.http.post<UserAuthenticateResult>('/api/User/registration', user)
+        );
         
-        return request;
+        let isRegistered = this.isAuthenticate(new UserAuthenticateResult(
+            (await registrationResult).isSuccess, (await registrationResult).errorMessage)
+        );
+        
+        return isRegistered;
     }
 
     public async login(user: User): Promise<boolean>
@@ -24,8 +29,8 @@ export class AuthService
         let loginResult: Promise<UserAuthenticateResult> = firstValueFrom(
             await this.http.post<UserAuthenticateResult>('/api/User/login', user)
         );
-        
-        let isLogined = this.isLogined(new UserAuthenticateResult(
+
+        let isLogined = this.isAuthenticate(new UserAuthenticateResult(
             (await loginResult).isSuccess, (await loginResult).errorMessage)
         );
         
@@ -45,11 +50,11 @@ export class AuthService
         else return false;
     }
 
-    private isLogined(loginResult: UserAuthenticateResult): boolean
+    private isAuthenticate(authResult: UserAuthenticateResult): boolean
     {
-        if (loginResult.isSuccess == false)
+        if (authResult.isSuccess == false)
         {
-            alert(loginResult.errorMessage);
+            alert(authResult.errorMessage);
             return false;
         }        
 

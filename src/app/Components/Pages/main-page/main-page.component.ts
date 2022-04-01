@@ -10,13 +10,13 @@ import { DialogOptionsComponent } from '../../Dialogs/dialog-options/dialog-opti
 })
 export class MainPageComponent
 {
-  constructor(private mainDialog: MatDialog, private authService: AuthService) {}
+  constructor(private authService: AuthService, private mainDialog: MatDialog) {}
 
   public async openDialogOptions()
   {
     this.mainDialog.open(DialogOptionsComponent);
   }
-
+  
   public async logOut()
   {
     await this.authService.logOut();

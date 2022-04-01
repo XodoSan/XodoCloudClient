@@ -31,7 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatButtonModule,
     ReactiveFormsModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule]

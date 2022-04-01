@@ -28,8 +28,11 @@ export class RegistrationDialogComponent implements OnInit
   {
     if (this.authService.isSamePasswords(this.regDialogForm.value.password, this.regDialogForm.value.repeatedPassword))
     {
-      this.regDialogForm.disable();
-      this.authService.register(this.regDialogForm.value);
+      if (await this.authService.register(this.regDialogForm.value))
+      {
+        this.regDialogForm.disable();
+        this.regDialog.closeAll();
+      }
     }
     else alert('Passwords do not match');
   }
