@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/app/Services/AuthService';
 import { DialogOptionsComponent } from '../../Dialogs/dialog-options/dialog-options.component';
 
 @Component({
@@ -9,10 +10,15 @@ import { DialogOptionsComponent } from '../../Dialogs/dialog-options/dialog-opti
 })
 export class MainPageComponent
 {
-  constructor(private mainDialog: MatDialog) {}
+  constructor(private mainDialog: MatDialog, private authService: AuthService) {}
 
   public async openDialogOptions()
   {
     this.mainDialog.open(DialogOptionsComponent);
+  }
+
+  public async logOut()
+  {
+    await this.authService.logOut();
   }
 }

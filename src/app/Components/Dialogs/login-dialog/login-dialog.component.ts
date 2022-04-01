@@ -13,7 +13,7 @@ export class LoginDialogComponent implements OnInit
 {
   public loginDialogForm = new FormGroup({});
 
-  constructor(private auth: AuthService, private loginDialog: MatDialog) {}
+  constructor(private authService: AuthService, private loginDialog: MatDialog) {}
 
   ngOnInit()
   {
@@ -25,7 +25,7 @@ export class LoginDialogComponent implements OnInit
 
   public async onSubmit()
   {
-    if (await this.auth.login(this.loginDialogForm.value))
+    if (await this.authService.login(this.loginDialogForm.value))
     {
       this.loginDialogForm.disable();
     }

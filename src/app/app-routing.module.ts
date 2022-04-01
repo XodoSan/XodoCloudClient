@@ -5,7 +5,7 @@ import { MainPageComponent } from "./Components/Pages/main-page/main-page.compon
 
 const routes: Routes = [
     {path: '', component: MainPageComponent},
-    {path: 'file', component: FileLoadPageComponent}
+    {path: 'file_page', component: FileLoadPageComponent}
   ];
   
   @NgModule({

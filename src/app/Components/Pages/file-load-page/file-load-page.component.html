@@ -1,2 +1,2 @@
-<input MatInput type="file" name="load file" multiple (change)="ChangeFiles($event)">
-<button mat-button (click)="AddFiles(userDatas)">AddFile</button>
+<input MatInput type="file" name="load file" multiple (change)="FileService.ChangeFiles($event)">
+<button mat-button (click)="FileService.AddFiles(FileService.userDatas)">AddFile</button>

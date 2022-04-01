@@ -12,6 +12,7 @@ import { DialogOptionsComponent } from './Components/Dialogs/dialog-options/dial
 import { LoginDialogComponent } from './Components/Dialogs/login-dialog/login-dialog.component';
 import { MainPageComponent } from './Components/Pages/main-page/main-page.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     FormsModule,
     MatDialogModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [AppRoutingModule]
 })
 export class AppModule { }

@@ -1,5 +1,4 @@
 <div>
-    <button mat-button mat-dialog-close></button>
     <mat-dialog-content>
         <h2 class="title">Login</h2>
     </mat-dialog-content>
@@ -21,9 +20,10 @@
             <button 
             type="submit"
             mat-button
+            mat-dialog-close
             [disabled]="loginDialogForm.invalid || loginDialogForm.disabled">Login
             </button>
-            <button mat-button [mat-dialog-close]="true" class="function-button">Cancel</button>
+            <button mat-button mat-dialog-close>Cancel</button>
             <button mat-button mat-dialog-close (click)="openDialogRegistration()">I dont have account</button>
         </form>
     </mat-dialog-actions>

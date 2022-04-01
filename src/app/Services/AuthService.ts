@@ -21,12 +21,22 @@ export class AuthService
 
     public async login(user: User): Promise<boolean>
     {
-        let loginResult: Promise<UserAuthenticateResult>;
-
-        loginResult = firstValueFrom(await this.http.post<UserAuthenticateResult>('/api/User/login', user));
-        let isLogined = this.isLogined(new UserAuthenticateResult((await loginResult).isSuccess, (await loginResult).errorMessage))   
+        let loginResult: Promise<UserAuthenticateResult> = firstValueFrom(
+            await this.http.post<UserAuthenticateResult>('/api/User/login', user)
+        );
+        
+        let isLogined = this.isLogined(new UserAuthenticateResult(
+            (await loginResult).isSuccess, (await loginResult).errorMessage)
+        );
         
         return isLogined;
+    }
+
+    public async logOut()
+    {
+        let user: User = new User("", "");
+        
+        firstValueFrom(await this.http.post<void>('/api/User/logout', user));
     }
     
     public isSamePasswords(password: string, repeatedPassword: string): boolean

@@ -13,7 +13,7 @@ export class RegistrationDialogComponent implements OnInit
 {
   public regDialogForm = new FormGroup({});
 
-  constructor(private auth: AuthService, private regDialog: MatDialog) {}
+  constructor(private authService: AuthService, private regDialog: MatDialog) {}
 
   ngOnInit()
   {
@@ -26,10 +26,10 @@ export class RegistrationDialogComponent implements OnInit
 
   public async onSubmit()
   {
-    if (this.auth.isSamePasswords(this.regDialogForm.value.password, this.regDialogForm.value.repeatedPassword))
+    if (this.authService.isSamePasswords(this.regDialogForm.value.password, this.regDialogForm.value.repeatedPassword))
     {
       this.regDialogForm.disable();
-      this.auth.register(this.regDialogForm.value);
+      this.authService.register(this.regDialogForm.value);
     }
     else alert('Passwords do not match');
   }
