@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/Services/AuthService';
 import { LocalStorageService } from 'src/app/Services/LocalStorageService';
@@ -10,7 +10,7 @@ import { DialogOptionsComponent } from '../../Dialogs/dialog-options/dialog-opti
   styleUrls: ['./main-page.component.css']
 })
 @Injectable({providedIn: "root"})
-export class MainPageComponent
+export class MainPageComponent implements OnInit
 {
   constructor
   (
@@ -18,6 +18,11 @@ export class MainPageComponent
     private mainDialog: MatDialog, 
     private localStorageService: LocalStorageService
   ) {}
+
+  ngOnInit() 
+  {
+    this.localStorageService.loadInfo();
+  }
 
   public userInfo$ = this.localStorageService.userData$;
 
