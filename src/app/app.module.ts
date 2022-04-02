@@ -21,7 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
     RegistrationDialogComponent,
     DialogOptionsComponent,
     LoginDialogComponent,
-    MainPageComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,

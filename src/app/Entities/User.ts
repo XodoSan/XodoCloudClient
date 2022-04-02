@@ -1,11 +1,11 @@
 export class User
 {
     public email: string;
-    public passwordHash: string;
+    public password: string;
 
-    constructor(email: string, passwordHash: string)
+    constructor(email: string, password: string)
     {
         this.email = email;
-        this.passwordHash = passwordHash;
+        this.password = password;
     }
 }

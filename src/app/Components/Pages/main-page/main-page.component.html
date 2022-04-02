@@ -1,3 +1,6 @@
 <button mat-dialog-close (click)="openDialogOptions()" mat-button>Enter in system</button>
+<label>this is authorizate user: </label>
+<div *ngIf="userInfo$ | async as userInfo"> 
+    {{ userInfo?.email || "" }}
+</div>
 <button mat-button (click)="logOut()">Sign out</button>
-<label>this is authorizate user</label>

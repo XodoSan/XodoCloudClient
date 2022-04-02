@@ -1,7 +1,8 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/Services/AuthService';
+import { LocalStorageService } from 'src/app/Services/LocalStorageService';
 import { RegistrationDialogComponent } from '../registration-dialog/registration-dialog.component';
 
 @Component({
@@ -13,7 +14,12 @@ export class LoginDialogComponent implements OnInit
 {
   public loginDialogForm = new FormGroup({});
 
-  constructor(private authService: AuthService, private loginDialog: MatDialog) {}
+  constructor
+  (
+    private authService: AuthService, 
+    private loginDialog: MatDialog, 
+    private localStorageService: LocalStorageService
+  ) {}
   
   ngOnInit()
   {
@@ -27,7 +33,9 @@ export class LoginDialogComponent implements OnInit
   {
     if (await this.authService.login(this.loginDialogForm.value))
     {
-      //localstorage authorizate userEmail
+      this.localStorageService.clearInfo();
+      const {email, password} = this.loginDialogForm.value;
+      this.localStorageService.setInfo({email, password});
 
       this.loginDialogForm.disable();
       this.loginDialog.closeAll();

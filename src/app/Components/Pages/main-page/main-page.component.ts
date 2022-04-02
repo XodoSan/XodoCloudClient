@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/Services/AuthService';
+import { LocalStorageService } from 'src/app/Services/LocalStorageService';
 import { DialogOptionsComponent } from '../../Dialogs/dialog-options/dialog-options.component';
 
 @Component({
@@ -8,9 +9,17 @@ import { DialogOptionsComponent } from '../../Dialogs/dialog-options/dialog-opti
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
+@Injectable({providedIn: "root"})
 export class MainPageComponent
 {
-  constructor(private authService: AuthService, private mainDialog: MatDialog) {}
+  constructor
+  (
+    private authService: AuthService, 
+    private mainDialog: MatDialog, 
+    private localStorageService: LocalStorageService
+  ) {}
+
+  public userInfo$ = this.localStorageService.userData$;
 
   public async openDialogOptions()
   {
@@ -20,5 +29,6 @@ export class MainPageComponent
   public async logOut()
   {
     await this.authService.logOut();
+    this.localStorageService.clearAllLocalStorage();
   }
 }
