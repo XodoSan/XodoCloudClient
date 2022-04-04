@@ -26,12 +26,17 @@ export class FileService
       }
     }
   
-    public async AddFiles(userDatas: FormData[]): Promise<void>
+    public async AddFiles(userDatas: FormData[])
     {
       for (var i = 0; i < userDatas.length; i++)
       {
         firstValueFrom(await this.http.post<void>('/api/File', this.userDatas[i]));
       }
+    }
+
+    public async GetUserFiles(): Promise<string[]>
+    {
+      return firstValueFrom(await this.http.get<string[]>('/api/File'));
     }
   
     private ValidationFile(file: any): boolean

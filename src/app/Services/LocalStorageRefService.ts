@@ -14,17 +14,17 @@ export class LocalStorageRefService
 
     public setData(data: any) 
     {
-        const jsonData = JSON.stringify(data)
-        localStorage.setItem('User', jsonData)
+        const jsonData = JSON.stringify(data);
+        localStorage.setItem('User', jsonData);
     }
      
     public getData() 
     {
-        return localStorage.getItem('User')
+        return localStorage.getItem('User');
     }
      
     public removeData(key: any) 
     {
-        localStorage.removeItem(key)
+        localStorage.removeItem(key);
     }
 }  
