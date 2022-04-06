@@ -1,2 +1,10 @@
 <input MatInput type="file" name="load file" multiple (change)="fileService.ChangeFiles($event)">
-<button mat-button (click)="fileService.AddFiles(fileService.userDatas)">AddFile</button>
+<button mat-button (click)="fileService.AddFiles(fileService.userDatas)" mat-dialog-close>AddFile</button>
+<button (click)="fileService.DeleteFiles(checkboxItems)" mat-dialog-close>Delete files</button>
+<button (click)="fileService.DownloadFiles(checkboxItems)" mat-dialog-close>Download files</button>
+
+<div *ngFor="let checkboxFile of checkboxItems">
+    <input MatInput type="checkbox" [(ngModel)]="checkboxFile.isChecked">
+    <span [class.active]="checkboxFile.isChecked"></span>
+    <p>{{checkboxFile.name}}</p>
+</div>

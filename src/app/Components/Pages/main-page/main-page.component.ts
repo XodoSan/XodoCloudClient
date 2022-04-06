@@ -1,6 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/Services/AuthService';
+import { FileService } from 'src/app/Services/FileService';
 import { LocalStorageService } from 'src/app/Services/LocalStorageService';
 import { DialogOptionsComponent } from '../../Dialogs/dialog-options/dialog-options.component';
 import { FileLoadPageComponent } from '../file-load-page/file-load-page.component';
@@ -18,7 +19,7 @@ export class MainPageComponent implements OnInit
     private authService: AuthService, 
     private mainDialog: MatDialog, 
     private fileDialog: MatDialog,
-    private localStorageService: LocalStorageService,
+    private localStorageService: LocalStorageService
   ) {}
 
   async ngOnInit() 
