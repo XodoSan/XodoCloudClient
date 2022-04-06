@@ -4,3 +4,10 @@
     {{ userInfo?.email || "" }}
 </div>
 <button mat-button (click)="logOut()">Sign out</button>
+<button mat-button (click)="openDialogFiles()">Pick files</button>
+
+<div *ngIf="userFiles$ | async as userFiles">
+    <div *ngFor="let files of userFiles">
+        {{files}}
+    </div>
+</div>

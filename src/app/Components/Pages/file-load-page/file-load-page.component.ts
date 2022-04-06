@@ -11,26 +11,16 @@ import { LocalStorageService } from 'src/app/Services/LocalStorageService';
 @Injectable({
   providedIn: "root"
 })
-export class FileLoadPageComponent implements OnInit
+export class FileLoadPageComponent
 {
   public fileService: FileService;
 
   constructor
   (
     private http: HttpClient, 
-    private _fileService: FileService, 
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
   )
   {
-    this.fileService = new FileService(this.http);
+    this.fileService = new FileService(this.http, this.localStorageService);
   }  
-
-  async ngOnInit() 
-  {
-    let files = await this._fileService.GetUserFiles();
-    this.localStorageService.setFileInfo(files);
-    this.localStorageService.loadFileInfo();
-  }
-  
-  public userFiles$ = this.localStorageService.fileData$;
 }

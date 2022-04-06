@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
+import { LocalStorageService } from "./LocalStorageService";
 
 @Injectable({
     providedIn: "root",
@@ -10,7 +11,9 @@ export class FileService
     private maxFileSize: number = 524288000;
     public userDatas: FormData[] = [];
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private localStorage: LocalStorageService) {}
+
+    public files: string[] = this.localStorage.readFileInfo();
 
     public ChangeFiles(event: any)
     {
@@ -21,6 +24,7 @@ export class FileService
         {
           userData.append('file_upload', event.target.files[i], event.target.files[i].name);
           this.userDatas.push(userData);
+          this.files.push(event.target.files[i].name);
         }
         else this.userDatas = [];
       }
@@ -28,15 +32,13 @@ export class FileService
   
     public async AddFiles(userDatas: FormData[])
     {
-      for (var i = 0; i < userDatas.length; i++)
-      {
-        firstValueFrom(await this.http.post<void>('/api/File', this.userDatas[i]));
-      }
+      let requests = userDatas.map(userData => firstValueFrom(this.http.post<void>('/api/File', userData)));      
+      Promise.all(requests).then(ok => this.localStorage.setFileInfo(this.files))
     }
 
     public async GetUserFiles(): Promise<string[]>
     {
-      return firstValueFrom(await this.http.get<string[]>('/api/File'));
+      return firstValueFrom(await this.http.get<string[]>('/api/File'))
     }
   
     private ValidationFile(file: any): boolean

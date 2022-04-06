@@ -1,7 +1,2 @@
 <input MatInput type="file" name="load file" multiple (change)="fileService.ChangeFiles($event)">
 <button mat-button (click)="fileService.AddFiles(fileService.userDatas)">AddFile</button>
-<div *ngIf="userFiles$ | async as userFiles">
-    <div *ngFor="let files of userFiles">
-        {{files}}
-    </div>
-</div>

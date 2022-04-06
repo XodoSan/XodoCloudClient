@@ -31,7 +31,6 @@ export class RegistrationDialogComponent implements OnInit
     {
       if (await this.authService.register(this.regDialogForm.value))
       {
-        this.localStorageService.clearInfo();
         const {email, password} = this.regDialogForm.value;
         this.localStorageService.setInfo({email, password});
         

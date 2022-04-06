@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/Services/AuthService';
+import { FileService } from 'src/app/Services/FileService';
 import { LocalStorageService } from 'src/app/Services/LocalStorageService';
+import { MainPageComponent } from '../../Pages/main-page/main-page.component';
 import { RegistrationDialogComponent } from '../registration-dialog/registration-dialog.component';
 
 @Component({
@@ -18,7 +20,8 @@ export class LoginDialogComponent implements OnInit
   (
     private authService: AuthService, 
     private loginDialog: MatDialog, 
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private fileService: FileService,
   ) {}
   
   ngOnInit()
@@ -33,10 +36,12 @@ export class LoginDialogComponent implements OnInit
   {
     if (await this.authService.login(this.loginDialogForm.value))
     {
-      this.localStorageService.clearInfo();
       const {email, password} = this.loginDialogForm.value;
       this.localStorageService.setInfo({email, password});
 
+      this.fileService.files = await this.fileService.GetUserFiles();
+      this.localStorageService.setFileInfo(this.fileService.files);
+      
       this.loginDialogForm.disable();
       this.loginDialog.closeAll();
     }

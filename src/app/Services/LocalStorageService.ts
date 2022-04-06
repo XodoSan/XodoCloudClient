@@ -25,6 +25,12 @@ export class LocalStorageService
         this._fileData$.next(data);
    }
 
+   readFileInfo()
+   {
+        const data = JSON.parse(this._localStorage.getItem("File") || '{}');
+        return data;
+   }
+
     loadFileInfo() 
     {
         const data = JSON.parse(this._localStorage.getItem("File") || '{}');
@@ -60,5 +66,6 @@ export class LocalStorageService
     {
         this._localStorage.clear();
         this._userData$.next(null);
+        this._fileData$.next(null);
     }
 }
